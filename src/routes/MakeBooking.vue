@@ -11,7 +11,7 @@
       </v-card-title>
       <v-card-actions>
        <div class="inputs-container">
-         <v-date-picker dark v-model="datepicker" :landscape="landscape" :reactive="reactive"></v-date-picker>
+         <v-date-picker dark v-model="datepicker" :landscape="landscape" :reactive="reactive">   min="2018-11-26" max="2020-01-30" </v-date-picker>
          <v-time-picker dark v-model="timepicker" :landscape="landscape" :reactive="reactive"></v-time-picker>
         </div>
         </v-card-actions>
@@ -22,6 +22,9 @@
             label="How many people?"
             class="input-group--focused"
           />
+          <input type="radio" v-model="paymentMethod" value="Card">Pay by Debit/Credit Card
+          <input type="radio" v-model="paymentMethod" value="Cash">Pay with Cash
+          <h2> Please note - both payment methods require payment at the restaurant </h2>
           <v-btn color='primary' @click="book">Book Restaurant</v-btn>
           </div>
     </v-card>
@@ -53,10 +56,13 @@ export default {
   data: () => ({
     state: store.state,
     datepicker: null,
-    timepicker: null,
+    timepicker: null, 
+    currentTime: moment().format('LT'), 
+   // currentDate:
     reactive: true,
     landscape: false,
-    numPeople: '', 
+    numPeople: '',
+    paymentMethod: null,  
     snackbar: false,
     y: 'top',
     x: null,
@@ -76,6 +82,7 @@ export default {
         time: this.timepicker,
         date: this.datepicker,
         numPeople: this.numPeople,
+        paymentMethod: this.paymentMethod,
         userId: this.state.currentUser.uid
       }).then(() => { 
         this.snackbar = true;
