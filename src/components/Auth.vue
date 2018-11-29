@@ -46,8 +46,8 @@ export default {
     text-align: center;
 		box-shadow: 3px 3px 15px -4px rgba(0,0,0,0.75);
   }
-	img {
-	 width:300px; /* you can use % */
-	margin: 20px;
-	}
+  img {
+    width: 300px;
+    margin: 20px;
+  }
 </style>

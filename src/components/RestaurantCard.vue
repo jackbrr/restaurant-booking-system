@@ -7,7 +7,7 @@
           <h3> {{ restaurant.location.address }} </h3>
           <h3> {{ restaurant.cuisines }} </h3>
           <h3> {{ price }} </h3>
-          <a :href="restaurant.menu_url"><v-icon>local_dining</v-icon> Menu</a></br>
+          <a :href="restaurant.menu_url"><v-icon>local_dining</v-icon> Menu</a><br />
            <a :href="restaurant.photos_url"><v-icon>photo</v-icon> Photos</a>
           <VueStarRating :star-size="25" :rating="rating" />
           <h4>{{ restaurant.user_rating.rating_text }}</h4>

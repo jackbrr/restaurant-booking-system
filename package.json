@@ -14,6 +14,7 @@
     "firebase": "^5.0.4",
     "firebaseui": "^3.0.0",
     "material-design-icons-iconfont": "^3.0.3",
+    "moment": "^2.22.2",
     "sendgrid": "sendgrid/sendgrid-nodejs",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",

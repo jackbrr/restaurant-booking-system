@@ -2,8 +2,7 @@
   <div>
   <h1> Make Booking </h1>
    <v-card>
-      <v-card-title primary-title>
-        <div>
+      <v-card-title primary-title> <div>
           <h3 class="headline mb-0">{{ restaurant.name }}</h3>
           <h3> {{ restaurant.location.address }} </h3>
           <h3> {{ restaurant.cuisines }} </h3>
@@ -46,6 +45,7 @@
 
 <script>
 import { createBooking } from '../api/bookingApis';
+import moment from 'moment';
 import store from '../store';
 
 export default {
@@ -82,7 +82,7 @@ export default {
         time: this.timepicker,
         date: this.datepicker,
         numPeople: this.numPeople,
-        paymentMethod: this.paymentMethod,
+        // paymentMethod: this.paymentMethod
         userId: this.state.currentUser.uid
       }).then(() => { 
         this.snackbar = true;
