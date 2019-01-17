@@ -23,8 +23,15 @@ const getBookings = params => {
   return axios.post(`${API_URL}/bookings`, { data: params }).then(({ data }) => data);
 };
 
-const cancelBooking = bookingId => {
-  return axios.delete(`${API_URL}/bookings`, { params: { id: bookingId } });
+const cancelBooking = booking => {
+    return axios({
+    method: 'DELETE',
+    url: `${API_URL}/bookings`,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: booking
+  });
 }
 
 

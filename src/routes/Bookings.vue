@@ -97,7 +97,7 @@ export default {
       this.toCancel = booking; 
     },
     cancelBooking() {
-      cancelBooking({ id: this.toCancel._id, restaurant: this.restaurant, email: this.state.currentUser.email }).then(() => {
+      cancelBooking(this.toCancel).then(() => {
         const toRemove = this.bookings.findIndex(({ _id }) => _id === this.toCancel._id);
         this.bookings.splice(toRemove, 1);
         this.dialog = false;
