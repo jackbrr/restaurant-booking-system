@@ -1,10 +1,10 @@
 const RESTAURANT_USERS = [{
         email: 'jackbarr123@googlemail.com',
-        restaurantId: '16674842'
+        restaurantId: '16675470'
     },
     {
         email: 'jackbarr94@hotmail.com',
-        restaurantId: '12831231'
+        restaurantId: '16674842'
     }
 ];
 

@@ -3,8 +3,8 @@ import axios from 'axios';
 const API_URL =
   process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : '';
 
-const createBooking = booking => {
-  return axios({
+const createBooking = booking => { 
+    return axios({
     method: 'POST',
     url: `${API_URL}/book`,
     headers: {
@@ -25,6 +25,7 @@ const getBookings = params => {
 
 const cancelBooking = bookingId => {
   return axios.delete(`${API_URL}/bookings`, { params: { id: bookingId } });
-};
+}
+
 
 export { createBooking, getBookings, cancelBooking, getBookingsDate };

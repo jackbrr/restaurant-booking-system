@@ -46,7 +46,6 @@
       </v-card-title>
       <v-card-actions>
         <v-btn 
-          v-if="!state.restaurant"
           color="red" 
           dark 
           @click.native.stop="setForCancel(booking)"
@@ -63,6 +62,7 @@
 <script>
 import { getBookings, cancelBooking } from '../api/bookingApis'; 
 import store from '../store';
+
 
 export default {
   name: 'Bookings',
@@ -97,10 +97,11 @@ export default {
       this.toCancel = booking; 
     },
     cancelBooking() {
-      cancelBooking(this.toCancel._id).then(() => {
+      cancelBooking({ id: this.toCancel._id, restaurant: this.restaurant, email: this.state.currentUser.email }).then(() => {
         const toRemove = this.bookings.findIndex(({ _id }) => _id === this.toCancel._id);
         this.bookings.splice(toRemove, 1);
         this.dialog = false;
+
       })
     },
     fetchBookings(date) {

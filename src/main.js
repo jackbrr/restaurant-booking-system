@@ -8,10 +8,13 @@ import store from './store';
 import 'vuetify/dist/vuetify.min.css';
 import 'material-design-icons-iconfont/dist/material-design-icons.css'; // Ensure you are using css-loader
 import 'firebaseui/dist/firebaseui.css';
+//import VueGeolocation from 'vue-browser-geolocation';
+
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify);
 Vue.use(VueRouter);
+//Vue.use(VueGeolocation);
 
 const AuthRoute = () => import('./components/Auth.vue');
 const LayoutRoute = () => import('./routes/Layout.vue');
@@ -67,6 +70,12 @@ new Vue({
         this.$router.push('/auth');
       }
     })
+  //{
+    //this.$getLocation(options)
+    //.then(coordinates => {
+     // console.log(coordinates);
+    //});
+ // }
   },
   render: h => h(App)
 }).$mount('#app');

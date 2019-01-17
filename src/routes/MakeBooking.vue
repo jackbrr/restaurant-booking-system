@@ -10,20 +10,58 @@
       </v-card-title>
       <v-card-actions>
        <div class="inputs-container">
-         <v-date-picker dark v-model="datepicker" :landscape="landscape" :reactive="reactive">   min="2018-11-26" max="2020-01-30" </v-date-picker>
-         <v-time-picker dark v-model="timepicker" :landscape="landscape" :reactive="reactive"></v-time-picker>
+         <v-date-picker dark v-model="datepicker" :landscape="landscape" :reactive="reactive" min="2019-01-18" max="2020-01-30"> </v-date-picker>
+         <v-time-picker dark v-model="timepicker" :landscape="landscape" :reactive="reactive" min="9:30" max="22:15"> </v-time-picker>
         </div>
         </v-card-actions>
           <div class="field-container">
+          <v-flex xs12 sm6 md3>
           <v-text-field
             v-model="numPeople"
+            :rules="[rules.maxNumber]"
             name="input-2"
             label="How many people?"
             class="input-group--focused"
-          />
-          <input type="radio" v-model="paymentMethod" value="Card">Pay by Debit/Credit Card
-          <input type="radio" v-model="paymentMethod" value="Cash">Pay with Cash
-          <h2> Please note - both payment methods require payment at the restaurant </h2>
+          /></v-flex>
+
+          <v-flex xs12 sm6 md3>
+           <v-text-field
+            v-model="requests"
+            label="Any preferences/requests for the restaurant?"
+          ></v-text-field>
+          </v-flex>
+
+          <v-radio-group v-model="paymentMethod">
+          <v-radio label="Pay by Debit/Credit Card" key="Card"  value="Card"> </v-radio>  
+          <v-radio label="Pay with Cash" key="Cash"  value="Cash"> </v-radio>
+          </v-radio-group>
+
+          <template class="cardDetails">
+
+          <v-flex xs12 sm6 md3>
+          <v-text-field
+            v-model="nameOnCard"
+            label="Name on Card"
+          ></v-text-field>
+        </v-flex>
+
+        <v-flex xs12 sm6 md3>
+          <v-text-field
+            v-model="cardNumber"
+            :mask="mask"
+            label="Card Number"
+          ></v-text-field>
+        </v-flex>
+
+        <v-flex xs12 sm6 md3>
+          <v-text-field
+         
+            v-model="expiryDate"
+            label="Expiry Date (MM/YY)"
+          ></v-text-field>
+        </v-flex>
+        </template>
+
           <v-btn color='primary' @click="book">Book Restaurant</v-btn>
           </div>
     </v-card>
@@ -55,10 +93,13 @@ export default {
   },
   data: () => ({
     state: store.state,
+    mask: 'credit-card',
+    rules: {
+      maxNumber: value => value < 21 || "Max Booking is 20"
+    }, 
     datepicker: null,
     timepicker: null, 
-    currentTime: moment().format('LT'), 
-   // currentDate:
+    currentTime: moment().format('LT'),
     reactive: true,
     landscape: false,
     numPeople: '',
@@ -75,15 +116,24 @@ export default {
       return store.state.chosenRestaurant;
     } 
   },
+
+  
   methods: {
     book() {
+      
       createBooking({
         restaurant: this.restaurant,
         time: this.timepicker,
         date: this.datepicker,
         numPeople: this.numPeople,
-        // paymentMethod: this.paymentMethod
-        userId: this.state.currentUser.uid
+        paymentMethod: this.paymentMethod,
+        nameOnCard: this.nameOnCard,
+        cardNumber: this.cardNumber,
+        expiryDate: this.expiryDate,
+        requests: this.requests,
+        userId: this.state.currentUser.uid,
+        email: this.state.currentUser.email,
+       
       }).then(() => { 
         this.snackbar = true;
       })

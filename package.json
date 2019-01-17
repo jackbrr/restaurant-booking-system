@@ -17,6 +17,7 @@
     "moment": "^2.22.2",
     "sendgrid": "sendgrid/sendgrid-nodejs",
     "vue": "^2.5.16",
+    "vue-browser-geolocation": "^1.5.0",
     "vue-router": "^3.0.1",
     "vue-star-rating": "^1.6.0",
     "vuetify": "^1.0.18"
