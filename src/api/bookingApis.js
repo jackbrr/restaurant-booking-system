@@ -23,16 +23,18 @@ const getBookings = params => {
   return axios.post(`${API_URL}/bookings`, { data: params }).then(({ data }) => data);
 };
 
-const cancelBooking = booking => {
+const cancelBooking = booking => { 
     return axios({
     method: 'DELETE',
-    url: `${API_URL}/bookings`,
+    url: `${API_URL}/bookings`, 
     headers: {
-      'Content-Type': 'application/json'
+     'Content-Type': 'application/json'
     },
-    data: booking
+   data: booking
   });
 }
+
+
 
 
 export { createBooking, getBookings, cancelBooking, getBookingsDate };
